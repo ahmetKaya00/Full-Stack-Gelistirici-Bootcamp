@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            --primary-color: #4CAF50;
+            --secondary-color: #fff;
+            --text-color:#333;
+            --background-color:#f4f4f4;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0,0.7);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .logo{
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+        .navbar .menu{
+            list-style: none;
+            display: flex;
+        }
+        .navbar .menu li{
+            margin-left: 2rem;
+        }
+        .navbar .menu a{
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .navbar .menu a:hover{
+            color: var(--primary-color);
+        }
+        .hero{
+            height: 100vh;
+            background: url('../wwwroot/demo.png') no-repeat center center / cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+        }
+        .hero h1{
+            font-size: 4rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0,0.5);
+        }
+        .hero p{
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        .cta-button{
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .cta-button:hover{
+            background-color: #45a049;
+        }
+        .services{
+            display: flex;
+            justify-content: space-around;
+            margin: 5rem auto;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+        }
+        .service-card{
+            background-color: var(--background-color);
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover{
+            transform: translateY(-10px);
+        }
+        .service-card h3{
+            margin-bottom: 1rem;
+        }
+        .service-card p{
+            line-height: 1.5;
+        }
+        .team{
+            padding: 4rem 0;
+            text-align: center;
+            background-color: var(--background-color);
+        }
+        .team-container{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .team-member{
+            position: relative;
+            width: 250px;
+            height: 300px;
+            margin-bottom: 2rem;
+        }
+        .team-member img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .team-member:hover img{
+            transform: scale(1.05);
+        }
+        .team-member .overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0,0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .team-member:hover .overlay{
+            opacity: 1;
+        }
+        .team-member .text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+        .work{
+            padding: 4rem 0;
+            background-color: #fff;
+            text-align: center;
+        }
+        .work h2{
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+        .work-item{
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+            border-radius: 10px;
+        }
+        .work-item img{
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 2rem;
+        }
+        .work-description{
+            text-align: left;
+            color: var(--text-color);
+        }
+        .testimonials{
+            padding: 4rem 0;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-align: center;
+        }
+        .testimonials-container{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .testimonial{
+            background-color: #fff;
+            color: var(--text-color);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 30%;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .testimonial:hover{
+            transform: translateY(-10px);
+        }
+        .contact-section{
+            padding: 4rem 0;
+            background-color: #f9f9f9;
+
+        }
+        .contact-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-form{
+            flex: 1;
+            margin-right: 2rem;
+        }
+        .contact-form form{
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form input,
+        .contact-form textarea{
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .contact-form button:hover{
+            background-color: var(--primary-color);
+        }
+        .contact-info{
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+        .contact-info iframe{
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+        }
+        @media (max-width: 768px){
+            .contact-container{
+                flex-direction: column;
+            }
+            footer{
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">MyWebSite</a>
+            <ul class="menu">
+                <li><a href="#services">Hizmetler</a></li>
+                <li><a href="#team">Ekibimiz</a></li>
+                <li><a href="#work">Yaptığımız İşler</a></li>
+                <li><a href="#testimonials">Referanslar</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Lorem ipsum dolor sit amet.</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, officiis!</p>
+            <a href="#services" class="cta-button">Hizmetlerimiz</a>
+        </div>
+    </section>
+    <section class="services">
+        <div class="service-card">
+            <h3>Lorem</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="service-card">
+            <h3>Lorem</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="service-card">
+            <h3>Lorem</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+    </section>
+    <section class="team">
+        <h2>Ekibimiz</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="../wwwroot/demo.png" alt="">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>Ahmet</h3>
+                        <p>Eğitmen</p>
+                        <p>demo@demo.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="../wwwroot/demo.png" alt="">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>Ahmet</h3>
+                        <p>Eğitmen</p>
+                        <p>demo@demo.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="../wwwroot/demo.png" alt="">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>Ahmet</h3>
+                        <p>Eğitmen</p>
+                        <p>demo@demo.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="work">
+        <h2>Yaptığımız İşler</h2>
+        <div class="work-item">
+            <img src="../wwwroot/demo.png" alt="">
+            <div class="work-description">
+                <h3>Lorem, ipsum.</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat reiciendis animi tenetur provident omnis molestiae tempore inventore voluptates enim, dolore, ea quae nulla nam sapiente quo asperiores rem quod. Rerum.</p>
+            </div>
+        </div>
+        <div class="work-item">
+            <img src="../wwwroot/demo.png" alt="">
+            <div class="work-description">
+                <h3>Lorem, ipsum.</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat reiciendis animi tenetur provident omnis molestiae tempore inventore voluptates enim, dolore, ea quae nulla nam sapiente quo asperiores rem quod. Rerum.</p>
+            </div>
+        </div>
+        <div class="work-item">
+            <img src="../wwwroot/demo.png" alt="">
+            <div class="work-description">
+                <h3>Lorem, ipsum.</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat reiciendis animi tenetur provident omnis molestiae tempore inventore voluptates enim, dolore, ea quae nulla nam sapiente quo asperiores rem quod. Rerum.</p>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials">
+        <h2>Referanslar</h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio modi nemo dolorum repellendus quos dolorem doloremque, totam tenetur? Magnam expedita praesentium sint quo nobis inventore, beatae reprehenderit eum ex est?</p>
+                <h3>Ali Veli</h3>
+                <span>XYZ ŞİRKETİ</span>
+            </div>
+            <div class="testimonial">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio modi nemo dolorum repellendus quos dolorem doloremque, totam tenetur? Magnam expedita praesentium sint quo nobis inventore, beatae reprehenderit eum ex est?</p>
+                <h3>Ali Veli</h3>
+                <span>XYZ ŞİRKETİ</span>
+            </div>
+            <div class="testimonial">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio modi nemo dolorum repellendus quos dolorem doloremque, totam tenetur? Magnam expedita praesentium sint quo nobis inventore, beatae reprehenderit eum ex est?</p>
+                <h3>Ali Veli</h3>
+                <span>XYZ ŞİRKETİ</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2>Bize Ulaşın</h2>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form action="">
+                    <input type="text" placeholder="Adınız">
+                    <input type="email" placeholder="Email">
+                    <textarea name="" id="" placeholder="Mesajınız"></textarea>
+                    <button type="submit">Gönder</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Adresimiz</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam officiis, ipsum quae sapiente illo tempora.</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6352370.432482797!2d29.84570701339204!3d38.9755273932546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb6fbe6ac752141d%3A0x978f9ade8f5dfb2c!2stechcareer.net!5e0!3m2!1str!2str!4v1751978775203!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+<footer>&copy;2025</footer>
+</body>
+
+</html>
