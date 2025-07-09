@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function greet(name = "Misafir"){
+            console.log("Merhaba, " + name + "!")
+        }
+        greet("Ahmet")
+
+        function square(number){
+            return number * number
+        }
+        console.log(square(5))
+
+        let sayHello = function(){
+            console.log("Merhaba")
+        }
+        sayHello()
+
+        let multply = (a,b) => a * b
+        console.log(multply(3,4));
+
+        (function(){
+            console.log("Merhaba TELEVOLE")
+        })()
+
+        let globalVar = "Global değişken"
+
+        function myFunction(){
+            console.log(globalVar)
+        }
+
+        myFunction()
+        console.log(globalVar)
+
+        function myFunctions(){
+            let localVar = "Local değişken"
+            console.log(localVar)
+        }
+
+        myFunctions()
+      //  console.log(localVar) HATA VERİR 
+
+      
+    </script>
+</body>
+</html>

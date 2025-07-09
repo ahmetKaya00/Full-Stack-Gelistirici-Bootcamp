@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #header{
+            color: blue;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="header">Header</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <button id="btn">Tıkla</button>
+
+    <script>
+        let header = document.getElementById("header")
+        let paragraph = document.querySelector("p")
+        let button = document.getElementById("btn")
+
+        console.log(header.textContent)
+
+        header.textContent = "New Header Text"
+        paragraph.innerHTML = "<strong>This is a paragraph</strong>"
+
+        header.style.color = "red"
+        header.style.fontSize = "24px"
+        paragraph.style.backgroundColor = "yellow"
+
+        let newParagraph = document.createElement("p")
+        newParagraph.id = "newParagraph"
+        newParagraph.textContent = "This is a new paragraph"
+        document.body.appendChild(newParagraph)
+    </script>
+</body>
+</html>
